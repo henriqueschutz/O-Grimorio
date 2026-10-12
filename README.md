@@ -68,7 +68,7 @@ Possible future developments include complete article pages, functional self-kno
 
 <div align="center">
 
-## ✦ AUTHOR | AUTOR ✦
+## ✦ AUTHOR ✦
 
 ### Henrique Schütz Santana
 
@@ -143,7 +143,7 @@ Entre as possibilidades futuras estão artigos completos, ferramentas de autocon
 
 <div align="center">
 
-## ✦ AUTHOR | AUTOR ✦
+## ✦ AUTOR ✦
 
 ### Henrique Schütz Santana
  
