@@ -76,7 +76,7 @@ Possible future developments include complete article pages, functional self-kno
 
 ### Lisandra Roman
 
-**Co-Creator & Design Leader**
+**Co-Creator & Head of Design of O Grimório**
 
 [GitHub — @henriqueschutz](https://github.com/henriqueschutz)
 
@@ -155,7 +155,7 @@ Entre as possibilidades futuras estão artigos completos, ferramentas de autocon
 
 ### Lisandra Roman
 
-**Co-Criadora e Líder de Design**
+**Co-Criadora e Líder de Design de O Grimório**
 
 
 
