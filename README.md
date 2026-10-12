@@ -63,6 +63,24 @@ Open **http://localhost:5500/**. Alternatively, use a local-server extension suc
 
 Possible future developments include complete article pages, functional self-knowledge tools, genuine account management and expanded content. These are **plans**, not features available in v0.1.0.
 
+
+---
+
+<div align="center">
+
+## ✦ AUTHOR | AUTOR ✦
+
+### Henrique Schütz Santana
+
+**Creator & Developer of O Grimório**  
+
+[GitHub — @henriqueschutz](https://github.com/henriqueschutz)
+
+✦ ───────────── ✦
+
+</div>
+
+
 ---
 
 <a id="português"></a>
@@ -119,3 +137,21 @@ Acesse **http://localhost:5500/**. Outra opção é usar uma extensão de servid
 ### Próximas etapas
 
 Entre as possibilidades futuras estão artigos completos, ferramentas de autoconhecimento funcionais, autenticação real de usuários e ampliação do acervo. São **planos**, não funcionalidades disponíveis na v0.1.0.
+
+
+---
+
+<div align="center">
+
+## ✦ AUTHOR | AUTOR ✦
+
+### Henrique Schütz Santana
+ 
+**Criador e Desenvolvedor de O Grimório**
+
+[GitHub — @henriqueschutz](https://github.com/henriqueschutz)
+
+✦ ───────────── ✦
+
+</div>
+
