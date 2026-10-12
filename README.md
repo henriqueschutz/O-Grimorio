@@ -68,11 +68,15 @@ Possible future developments include complete article pages, functional self-kno
 
 <div align="center">
 
-## ✦ AUTHOR ✦
+## ✦ AUTHORS ✦
 
 ### Henrique Schütz Santana
 
-**Creator & Developer of O Grimório**  
+**Creator & Developer of O Grimório**
+
+### Lisandra Roman
+
+**Co-Creator & Design Leader**
 
 [GitHub — @henriqueschutz](https://github.com/henriqueschutz)
 
@@ -143,11 +147,17 @@ Entre as possibilidades futuras estão artigos completos, ferramentas de autocon
 
 <div align="center">
 
-## ✦ AUTOR ✦
+## ✦ AUTORES ✦
 
 ### Henrique Schütz Santana
  
-**Criador e Desenvolvedor de O Grimório**
+**Co-Criador e Desenvolvedor de O Grimório**
+
+### Lisandra Roman
+
+**Co-Criadora e Líder de Design**
+
+
 
 [GitHub — @henriqueschutz](https://github.com/henriqueschutz)
 
