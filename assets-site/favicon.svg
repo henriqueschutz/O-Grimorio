@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Marca simples e legível em 16px: livro aberto + estrela. -->
+  <rect width="64" height="64" rx="10" fill="#172019"/>
+  <path d="M9 17c9-3 16-1 23 5v31c-7-6-14-8-23-5V17Zm46 0c-9-3-16-1-23 5v31c7-6 14-8 23-5V17Z" fill="#b9cba5" stroke="#edf3e5" stroke-width="2"/>
+  <path d="m32 7 2.4 6.1L41 15.5l-6.6 2.4L32 24l-2.4-6.1-6.6-2.4 6.6-2.4L32 7Z" fill="#dce8ca"/>
+</svg>

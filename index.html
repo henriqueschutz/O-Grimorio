@@ -1,0 +1,483 @@
+<!doctype html> <!-- doctype: informa ao navegador que este arquivo é HTML5 -->
+<html lang="pt-BR"> <!-- html: abre o documento HTML. Aqui começa a estrutura da página -->
+
+<head>  <!-- head: guarda metadados, configuração e recursos que não aparecem na tela -->
+  <meta charset="utf-8" /> <!-- meta charset: define a codificação de caracteres para aceitar acentos, emojis e símbolos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- meta viewport: faz a página se ajustar ao tamanho da tela do celular e evitar zoom inicial -->
+  <meta name="theme-color" content="#173d2b" /> <!-- meta theme-color: define a cor da barra do navegador em dispositivos compatíveis -->
+  <meta name="description" content="O Grimório: arquivo digital de magia, manifestação e autoconhecimento." /> <!-- meta description: texto resumido da página para buscadores e previews em redes/social -->
+  <title>O Grimório</title> <!-- title: texto que aparece na aba do navegador e em resultados de busca -->
+  <link rel="icon" href="assets-site/favicon.svg" type="image/svg+xml" /> <!-- link rel="icon": define o ícone da aba do navegador -->
+  <link rel="stylesheet" href="styles.css" /> <!-- link rel="stylesheet": conecta a folha de estilos principal da página -->
+  <script src="assets-site/astronomy.browser.min.js" defer></script> <!-- script defer: carrega scripts em paralelo e executa só depois do HTML estar pronto -->
+  <script src="tarot-data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body><!-- body: contém todo o conteúdo visível da página, como header, navegação, artigos, widgets e dialogs -->
+  <header class="site-header" id="topo"> <!-- header: representa o topo fixo da interface, sempre visível para identidade e navegação -->
+    <div class="brand-bar"> <!-- div: bloco de divisão, aqui sendo a barra da logo -->
+      <a class="brand" href="#topo" aria-label="O Grimório, página inicial"> <!-- a: link de navegação; aqui leva ao topo da página -->
+        <span class="brand-word" aria-hidden="true"> <!-- span: usado para agrupar e isolar um pequeno trecho de texto ou conteúdo dentro de uma frase, sem quebrar a linha ou alterar a estrutura visual por padrão -->
+          <span class="brand-initial">O</span>
+          <span class="brand-name">grimório.</span>
+        </span>
+      </a>
+
+      
+      <div class="account-entry" aria-label="Acesso ao Círculo Mágicko"> <!-- div: aqui agrupa os elementos de cadastro e login na parte superior do cabeçalho -->
+        <span class="account-copy"><strong>Primeira vez no Círculo Mágicko?</strong><br />Seu diário mágico pode morar aqui.</span><!-- span: marca um trecho de texto inline com destaque e texto complementar -->
+        <button class="text-button" type="button" data-dialog="signup-dialog">Cadastrar</button>
+        <span class="account-divider" aria-hidden="true">/</span>
+        <!-- button: dispara a abertura da janela de login -->
+        <button class="solid-button" type="button" data-dialog="signin-dialog">Entrar</button>
+      </div>
+    </div>
+
+    <!-- nav: navegação principal do site -->
+    <nav class="category-bar" aria-label="Categorias principais">
+      <div class="nav-items">
+        <a class="nav-link" href="#topo">
+          <span aria-hidden="true">⌂</span>
+          Início
+        </a>
+
+        <div class="nav-group">
+          <button class="nav-link has-menu" type="button" aria-expanded="false" aria-controls="menu-magia">
+            <span aria-hidden="true">✦</span>
+            Magia
+            <span aria-hidden="true">⌄</span>
+          </button>
+          <div class="cascade-menu" id="menu-magia" role="menu">
+            <a href="#artigos" role="menuitem"><span>01</span> Astrologia</a>
+            <a href="#artigos" role="menuitem"><span>02</span> Magia natural</a>
+            <a href="#artigos" role="menuitem"><span>03</span> Alta magia</a>
+            <a href="#artigos" role="menuitem"><span>04</span> Tarot e oráculos</a>
+            <a href="#artigos" role="menuitem"><span>05</span> História da magia</a>
+          </div>
+        </div>
+
+        <div class="nav-group">
+          <button class="nav-link has-menu" type="button" aria-expanded="false" aria-controls="menu-manifestacao">
+            <span aria-hidden="true">☼</span>
+            Manifestação
+            <span aria-hidden="true">⌄</span>
+          </button>
+          <div class="cascade-menu" id="menu-manifestacao" role="menu">
+            <a href="#artigos" role="menuitem"><span>01</span> Afirmações</a>
+            <a href="#artigos" role="menuitem"><span>02</span> Interpretação de sonhos</a>
+            <a href="#artigos" role="menuitem"><span>03</span> Simbolismo</a>
+            <a href="#artigos" role="menuitem"><span>04</span> Vision board</a>
+            <a href="#artigos" role="menuitem"><span>05</span> Mandala lunar</a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="#ferramentas">
+          <span aria-hidden="true">◈</span>
+          Autoconhecimento
+        </a>
+
+        <a class="nav-link" href="#sobre">
+          <span aria-hidden="true">ⓘ</span>
+          Sobre
+        </a>
+      </div>
+
+      <!-- form: campo de pesquisa do site -->
+      <form class="search-form" id="search-form" role="search">
+        <!-- button: abre ou fecha a área de busca -->
+        <button class="search-trigger" id="search-trigger" type="button" aria-expanded="false" aria-controls="search-field">
+          <span aria-hidden="true">⌕</span> Pesquisar
+        </button>
+        <!-- label: descreve o campo de busca para acessibilidade -->
+        <label class="visually-hidden" for="search-field">Pesquisar no Grimório</label>
+        <!-- input: recebe o texto digitado pelo usuário na busca -->
+        <input id="search-field" name="q" type="search" placeholder="Digite uma palavra, símbolo ou prática…" autocomplete="off" />
+        <!-- button: fecha o painel de busca -->
+        <button class="search-close" type="button" aria-label="Fechar pesquisa">×</button>
+      </form>
+    </nav>
+  </header>
+
+  <!-- main: conteúdo principal da página -->
+  <main id="conteudo" class="page-shell">
+    <!-- section: painel de resultados da pesquisa, visível apenas quando o usuário abre a busca -->
+    <section class="search-results" id="search-results" aria-live="polite" hidden>
+      <div class="window-title">
+        <span>resultado da pesquisa</span>
+        <span class="window-controls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+      </div>
+      <div id="search-results-list"></div>
+    </section>
+
+    <div class="content-grid">
+      <div class="main-column">
+        <!-- section: destaque editorial e principal do topo da homepage -->
+        <section class="retro-window" aria-labelledby="lead-title">
+          <div class="window-title">
+            <span>novo artigo</span>
+            <span class="window-controls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+          </div>
+
+          <div class="lead-content">
+            <div class="lead-copy">
+              <p class="kicker">TAROT & ORÁCULOS / PUBLICADO AGORA</p>
+              <h1 id="lead-title">Como olhar uma carta antes de procurar uma resposta.</h1>
+              <p class="lead-deck">
+                Imagem, posição, dignidade e contexto: quatro camadas para começar uma leitura sem depender de significados prontos.
+              </p>
+              <a class="command-link" href="#leitura-tarot"><span aria-hidden="true">&gt;</span> ler artigo completo</a>
+            </div>
+
+            <!-- figure: agrupa uma imagem e sua legenda como uma unidade visual -->
+            <figure class="orb-frame">
+              <!-- img: carrega a imagem principal do destaque editorial -->
+              <img src="assets-site/celestial-orb.webp" alt="Esfera celeste luminosa suspensa entre estrelas." width="1536" height="1024" />
+              <!-- figcaption: legenda explicativa da imagem -->
+              <figcaption>O SÍMBOLO VEM ANTES DA RESPOSTA</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- section: coleção de artigos, inspirada em um arquivo ou biblioteca de registros -->
+        <section id="artigos" aria-labelledby="archive-title">
+          <div class="section-heading">
+            <div>
+              <h2 id="archive-title">Páginas novas</h2>
+            </div>
+          </div>
+
+          <div class="article-grid">
+            <!-- article: representa um item independente dentro da coleção de textos -->
+            <article class="article-card searchable-item" data-search="magia primeiros passos ritual fundamentos">
+              <!-- span: identifica o código do registro -->
+              <span class="card-code">MAG.001</span>
+              <p class="card-category">MAGIA · FUNDAMENTOS</p>
+              <!-- h3: subtítulo do artigo na lista -->
+              <h3>Antes do primeiro ritual</h3>
+              <p>O que preparar, o que registrar e por que a intenção não substitui método.</p>
+              <!-- a: link para abrir o registro completo -->
+              <a href="#leitura-primeiro-ritual">Ler registro <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="article-card searchable-item" data-search="tarot simbolismo carta oráculo">
+              <span class="card-code">ORC.004</span>
+              <p class="card-category">TAROT & ORÁCULOS</p>
+              <h3>Como olhar uma carta</h3>
+              <p>Imagem, posição, dignidade e contexto antes da resposta pronta.</p>
+              <a href="#leitura-tarot">Ler registro <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="article-card searchable-item" data-search="manifestação afirmação prática desejo diário">
+              <span class="card-code">MAN.002</span>
+              <p class="card-category">MANIFESTAÇÃO</p>
+              <h3>Afirmação não é decoração</h3>
+              <p>Como transformar uma frase em prática observável e revisável.</p>
+              <a href="#leitura-afirmacoes">Ler registro <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="article-card searchable-item" data-search="sonhos interpretação diário símbolos manifestação">
+              <span class="card-code">SON.013</span>
+              <p class="card-category">SONHOS</p>
+              <h3>O símbolo antes do dicionário</h3>
+              <p>Um protocolo curto para registrar o sonho sem esmagar sua linguagem.</p>
+              <a href="#leitura-sonhos">Ler registro <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="article-card searchable-item" data-search="lua fases astrologia magia natural">
+              <span class="card-code">AST.008</span>
+              <p class="card-category">ASTROLOGIA</p>
+              <h3>Lua: ritmo, não receita</h3>
+              <p>Uma introdução às fases lunares e aos usos tradicionais atribuídos a elas.</p>
+              <a href="#leitura-lua">Ler registro <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="article-card searchable-item" data-search="história magia bruxo mago feiticeiro termos">
+              <span class="card-code">HIS.003</span>
+              <p class="card-category">HISTÓRIA DA MAGIA</p>
+              <h3>Bruxo, mago ou feiticeiro?</h3>
+              <p>Os termos mudam de sentido conforme época, idioma e disputa cultural.</p>
+              <a href="#leitura-termos">Ler registro <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+        </section>
+
+        <!-- section: conjunto de ferramentas de autoconhecimento em formato circular -->
+        <section class="tools-section" id="ferramentas" aria-labelledby="tools-title">
+          <div class="section-heading light-heading">
+            <div>
+              <span class="section-index">02</span>
+              <h2 id="tools-title">Altar de autoconhecimento</h2>
+            </div>
+            <span>escolha uma ferramenta</span>
+          </div>
+
+          <div class="tool-orbit" aria-label="Ferramentas de autoconhecimento">
+            <div class="orbit-center" aria-hidden="true">
+              <span>✦</span><small>VOCÊ</small>
+            </div>
+            <a class="tool-node tool-node-one" href="#mapa-astral"><span aria-hidden="true">☉</span><strong>Mapa astral</strong></a>
+            <a class="tool-node tool-node-two" href="#numerologia"><span aria-hidden="true">♙</span><strong>Numerologia</strong></a>
+            <a class="tool-node tool-node-three" href="#arcano"><span aria-hidden="true">⚔</span><strong>Arcano pessoal</strong></a>
+            <a class="tool-node tool-node-four" href="#sinastria"><span aria-hidden="true">♜</span><strong>Sinastria</strong></a>
+          </div>
+
+          <p class="tools-note">Astrologia, numerologia e correspondências reunidas sobre a mesma mesa.</p>
+        </section>
+
+        <!-- section: apresentação do projeto e proposta editorial -->
+        <section class="retro-window" id="sobre" aria-labelledby="about-title">
+          <div class="window-title">
+            <span>sobre</span>
+            <span class="window-controls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+          </div>
+
+          <div class="about-content">
+            <p class="kicker">UM GRIMÓRIO PODE SER COLETIVO</p>
+            <h2 id="about-title">Conhecimento com fonte, prática com memória.</h2>
+            <div>
+              <p>
+                O Grimório reúne estudo, ferramentas e registros pessoais sem transformar tradições distintas em uma sopa mística. Cada texto deve indicar de onde veio, o que é tradição e o que é interpretação.
+              </p>
+              <button class="command-link dark-command" type="button" data-dialog="signup-dialog">
+                <span aria-hidden="true">&gt;</span> entrar no círculo
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- aside: painel lateral com calendário, histórico e carta do dia -->
+      <aside class="side-column" aria-label="Almanaque e atalhos">
+        <section class="side-window calendar-window">
+          <div class="window-title">
+            <span>hoje</span>
+            <span class="window-controls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+          </div>
+
+          <div class="calendar-date">
+            <!-- strong: destaca um valor importante, como o número do dia -->
+            <strong id="day-number">30</strong>
+            <span>
+              <!-- b: marca texto em negrito para reforçar a informação -->
+              <b id="weekday">QUARTA-FEIRA</b>
+              <span id="weekday-latin">(DIES MERCURII)</span><br />
+              <span id="month-year">SETEMBRO · 2026</span>
+            </span>
+          </div>
+
+          <!-- dl: cria uma lista de termos e descrições, útil para dados astronômicos -->
+          <dl class="sky-data">
+            <div>
+              <!-- dt: nome do dado -->
+              <dt>Sol</dt>
+              <!-- dd: valor associado ao dado -->
+              <dd>
+                <span class="zodiac-position">
+                  <span id="sun-sign">Libra · 07°45′</span>
+                  <span id="sun-symbol" aria-hidden="true">♎︎</span>
+                </span>
+              </dd>
+            </div>
+
+            <div>
+              <dt>Lua</dt>
+              <dd>
+                <span class="zodiac-position">
+                  <span id="moon-sign">—</span>
+                  <span id="moon-symbol" aria-hidden="true"></span>
+                </span>
+                <span id="moon-phase">—</span>
+              </dd>
+            </div>
+
+            <div>
+              <dt>Estação</dt>
+              <dd id="season">primavera</dd>
+            </div>
+
+            <div>
+              <dt>Festa</dt>
+              <dd id="festival">—</dd>
+            </div>
+          </dl>
+
+          <!-- blockquote: marca uma citação destacada em destaque visual -->
+          <blockquote>
+            <p>“A leitura do mundo precede a leitura da palavra.”</p>
+            <!-- cite: indica a fonte ou autoria da citação -->
+            <cite>— Paulo Freire</cite>
+          </blockquote>
+
+          <a class="source-link" href="https://pt.wikipedia.org/wiki/Paulo_Freire" target="_blank" rel="noreferrer">Quem disse isso? ↗</a>
+        </section>
+
+        <section class="side-window recent-window">
+          <div class="window-title">
+            <span>seu histórico</span>
+            <span class="window-controls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+          </div>
+
+          <!-- ol: cria uma lista ordenada para mostrar itens em sequência -->
+          <ol id="recent-links">
+            <!-- li: cada item da lista -->
+            <li><span>10:42</span><a href="#leitura-tarot">Como olhar uma carta</a></li>
+            <li><span>09:17</span><a href="#ferramentas">Mesa de autoconhecimento</a></li>
+            <li><span>ONTEM</span><a href="#leitura-sonhos">O símbolo antes do dicionário</a></li>
+          </ol>
+        </section>
+
+        <section class="side-window tarot-window" id="tarot-window">
+          <div class="window-title">
+            <span>carta do dia</span>
+            <span class="window-controls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+          </div>
+
+          <!-- button: aciona a revelação da carta do dia -->
+          <button class="tarot-card" id="tarot-card" type="button" aria-expanded="false" aria-label="Revelar carta do dia">
+            <span class="card-back" aria-hidden="true">
+              <!-- i: marca texto em itálico ou símbolo decorativo -->
+              <i>✦</i>
+              <b>☾</b>
+              <!-- small: reduz o tamanho da legenda decorativa -->
+              <small>✧ THOTH ✧</small>
+            </span>
+
+            <span class="card-front">
+              <!-- img: espaço reservado para a imagem da carta gerada dinamicamente -->
+              <img id="tarot-image" src="" alt="" />
+            </span>
+          </button>
+
+          <div class="tarot-copy">
+            <div class="tarot-meta" id="tarot-meta" hidden>
+              <!-- strong: reforça o nome da carta revelada -->
+              <strong id="tarot-title"></strong>
+            </div>
+            <p class="tarot-disclaimer" id="tarot-disclaimer">Clique aqui para ver sua carta do dia!</p>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <!-- aside: widget flutuante com contador de visitantes -->
+  <aside class="visitor-popup" id="visitor-popup" aria-label="Contador de visitantes">
+    <div class="window-title">
+      <span>visitantes</span>
+      <span class="window-controls">
+        <button type="button" id="minimize-visitors" aria-label="Minimizar contador">_</button>
+        <i aria-hidden="true">□</i>
+        <button type="button" id="close-visitors" aria-label="Ocultar contador">×</button>
+      </span>
+    </div>
+
+    <div class="visitor-body">
+      <span class="status-light" aria-hidden="true"></span>
+      <div>
+        <strong>1.278 viajantes</strong>
+        <small>já cruzaram este círculo</small>
+      </div>
+    </div>
+  </aside>
+
+  <!-- button: restaurador do contador de visitantes oculto -->
+  <button class="visitor-restore" id="restore-visitors" type="button" aria-label="Restaurar contador" hidden>✦</button>
+
+  <!-- footer: rodapé da página com informações gerais -->
+  <footer class="site-footer">
+    <span>O GRIMÓRIO / ACERVO DIGITAL</span>
+    <a href="#topo">voltar ao topo ↑</a>
+    <span>FEITO PARA DURAR MAIS QUE UMA ABA</span>
+  </footer>
+
+  <!-- dialog: janela modal para cadastro, login e detalhe da carta -->
+  <dialog class="auth-dialog" id="signup-dialog">
+    <!-- form: reúne campos de entrada e envia a ação de cadastro -->
+    <form method="dialog" class="auth-panel" data-demo-form>
+      <div class="window-title">
+        <span>cadastro</span>
+        <span class="window-controls">
+          <i aria-hidden="true">_</i>
+          <i aria-hidden="true">□</i>
+          <!-- button: fecha a modal de cadastro -->
+          <button class="dialog-close" type="button" aria-label="Fechar cadastro">×</button>
+        </span>
+      </div>
+
+      <div class="auth-content">
+        <p class="kicker">PRIMEIRA VEZ NO CÍRCULO MÁGICKO?</p>
+        <h2>Abra seu grimório.</h2>
+        <!-- label: associa o texto ao campo de input -->
+        <label>Como quer ser chamado?<input name="name" autocomplete="name" required /></label>
+        <label>Seu e-mail<input name="email" type="email" autocomplete="email" required /></label>
+        <label>Crie uma chave<input name="password" type="password" minlength="8" autocomplete="new-password" required /></label>
+        <!-- button: envia o formulário de cadastro -->
+        <button class="solid-button full-button" type="submit">Traçar meu círculo</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="auth-dialog" id="signin-dialog">
+    <form method="dialog" class="auth-panel" data-demo-form>
+      <div class="window-title">
+        <span>entrar</span>
+        <span class="window-controls">
+          <i aria-hidden="true">_</i>
+          <i aria-hidden="true">□</i>
+          <!-- button: fecha a modal de login -->
+          <button class="dialog-close" type="button" aria-label="Fechar login">×</button>
+        </span>
+      </div>
+
+      <div class="auth-content">
+        <p class="kicker">A CASA RECONHECE QUEM VOLTA</p>
+        <h2>Use sua chave.</h2>
+        <label>Seu e-mail<input name="email" type="email" autocomplete="email" required /></label>
+        <label>Sua chave<input name="password" type="password" autocomplete="current-password" required /></label>
+        <!-- button: envia o formulário de login -->
+        <button class="solid-button full-button" type="submit">Abrir meu grimório</button>
+        <!-- button: aciona uma recuperação de senha ou alternativa de acesso -->
+        <button class="quiet-button" type="button">Minha chave sumiu no astral</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- div: mensagem curta de feedback ao usuário -->
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- dialog: modal com detalhes da carta do tarot -->
+  <dialog class="auth-dialog tarot-dialog" id="tarot-dialog" aria-labelledby="tarot-dialog-title">
+    <div class="auth-panel">
+      <div class="window-title">
+        <span>arquivo do tarot</span>
+        <span class="window-controls">
+          <button type="button" class="dialog-close" aria-label="Fechar detalhes">×</button>
+        </span>
+      </div>
+
+      <div class="tarot-dialog-body">
+        <!-- img: exibe a imagem da carta em uma janela modal -->
+        <img id="tarot-dialog-image" src="" alt="" />
+
+        <div class="tarot-dialog-copy">
+          <!-- small: subtítulo da carta -->
+          <small id="tarot-dialog-subtitle"></small>
+          <h2 id="tarot-dialog-title"></h2>
+          <p id="tarot-dialog-description"></p>
+
+          <h3>Significados</h3>
+          <p id="tarot-dialog-keywords"></p>
+
+          <h3>No cotidiano</h3>
+          <p id="tarot-dialog-practical"></p>
+
+          <h3>Atribuições</h3>
+          <p id="tarot-dialog-attribution"></p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</body>
+
+</html>
